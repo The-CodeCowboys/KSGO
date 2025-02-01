@@ -1,0 +1,1 @@
+/sbin/c++ -Wl,--dependency-file=CMakeFiles/KeyboardShooter.dir/link.d CMakeFiles/KeyboardShooter.dir/src/main.cpp.o -o KeyboardShooter  /usr/lib/libraylib.so -L/usr/lib -lraylib

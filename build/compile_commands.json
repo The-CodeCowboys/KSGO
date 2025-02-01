@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/ilyes/Programming/Top-Down-Shooter/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Top-Down-Shooter/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/main.cpp.o -c /home/ilyes/Programming/Top-Down-Shooter/src/main.cpp",
+  "file": "/home/ilyes/Programming/Top-Down-Shooter/src/main.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/main.cpp.o"
+}
+]
