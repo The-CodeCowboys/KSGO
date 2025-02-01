@@ -1,3 +1,0 @@
-/home/ilyes/Programming/Top-Down-Shooter/build/CMakeFiles/KeyboardShooter.dir
-/home/ilyes/Programming/Top-Down-Shooter/build/CMakeFiles/edit_cache.dir
-/home/ilyes/Programming/Top-Down-Shooter/build/CMakeFiles/rebuild_cache.dir
