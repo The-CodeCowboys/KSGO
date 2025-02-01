@@ -1,5 +1,5 @@
 #include "raylib.h"
-#include "Networking.hpp"
+#include "networking.hpp"
 
 int main(void) {
     Networking::startConnection();
