@@ -4,10 +4,11 @@
 constexpr int COLLISION_PADDING = 10;
 TextButton::TextButton() {}
 
-TextButton::TextButton(Vector2 position, std::string text, FontStyle fontStyle, std::function<void(void)> onClick)
-    : _text(text), _fontStyle(fontStyle), _callback(onClick) {
-    Vector2 textBoxSize =
-        MeasureTextEx(this->_fontStyle.font, this->_text.c_str(), this->_fontStyle.size, this->_fontStyle.spacing);
+TextButton::TextButton(Vector2 position, std::string text, FontStyle defaultStyle, FontStyle hoverStyle,
+                       std::function<void(void)> onClick)
+    : _text(text), _regularStyle(defaultStyle), _hoverStyle(hoverStyle), _callback(onClick) {
+    Vector2 textBoxSize = MeasureTextEx(this->_regularStyle.font, this->_text.c_str(), this->_regularStyle.size,
+                                        this->_regularStyle.spacing);
     Vector2 drawPosition = {position.x - textBoxSize.x / 2, position.y - textBoxSize.y / 2};
 
     this->_position = drawPosition;
@@ -16,9 +17,10 @@ TextButton::TextButton(Vector2 position, std::string text, FontStyle fontStyle, 
 };
 
 void TextButton::draw() {
-    DrawTextEx(this->_fontStyle.font, this->_text.c_str(), this->_position, this->_fontStyle.size,
-               this->_fontStyle.spacing, this->_fontStyle.color);
-    DrawRectangleRec(this->_boundingBox, {0, 0, 0, 155});
+    // DrawRectangleRec(this->_boundingBox, {0, 0, 0, 255}); // Debugging
+    FontStyle fontStyle = CheckCollisionPointRec(GetMousePosition(), this->_boundingBox) ? _hoverStyle : _regularStyle;
+    DrawTextEx(fontStyle.font, this->_text.c_str(), this->_position, fontStyle.size, fontStyle.spacing,
+               fontStyle.color);
 }
 
 void TextButton::update() {

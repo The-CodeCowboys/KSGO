@@ -13,7 +13,8 @@ struct FontStyle {
 class TextButton {
     public:
     TextButton();
-    TextButton(Vector2 position, std::string text, FontStyle fontStyle, std::function<void(void)> onClick);
+    TextButton(Vector2 position, std::string text, FontStyle defaultFontStyle, FontStyle fontStyleOnHover,
+               std::function<void(void)> onClick);
 
     void draw();
     void update();
@@ -22,6 +23,7 @@ class TextButton {
     Vector2 _position;
     Rectangle _boundingBox;
     std::string _text;
-    FontStyle _fontStyle;
+    FontStyle _regularStyle;
+    FontStyle _hoverStyle;
     std::function<void(void)> _callback;
 };

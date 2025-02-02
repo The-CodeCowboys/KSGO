@@ -1,10 +1,11 @@
+#include "constants.hpp"
 #include <memory>
 #include <raylib.h>
 #include <scenes.hpp>
 
 int main(void) {
-    const int screenWidth = 800;
-    const int screenHeight = 800;
+    const int screenWidth = SCREEN_WIDTH;
+    const int screenHeight = SCREEN_HEIGHT;
 
     InitWindow(screenWidth, screenHeight, "Raylib Test");
 
