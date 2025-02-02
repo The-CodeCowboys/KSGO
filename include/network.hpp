@@ -38,7 +38,7 @@ struct Data {
     float directionX;
     float directionY;
     bool isDead; // isDead / didHostWin
-    int hp;      // hp / currentHostPoints
+    int hp;      // hp / currentHostPoints / damage
     int level;   // level / currentPlayerPoints
     ClassType classType;
 };

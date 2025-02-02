@@ -1,6 +1,6 @@
 #include "server.hpp"
 
-Server::Server(int port) {
+Server::Server(std::string ip, int port) {
     this->tcpSocket = socket(AF_INET, SOCK_STREAM, 0);
     if (this->tcpSocket < 0) {
         return;
@@ -11,6 +11,7 @@ Server::Server(int port) {
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = INADDR_ANY;
     server_addr.sin_port = htons(port);
+    inet_pton(AF_INET, ip.c_str(), &server_addr.sin_addr);
     if (bind(this->tcpSocket, (sockaddr*)&server_addr, sizeof(server_addr)) < 0) {
         return;
     }
