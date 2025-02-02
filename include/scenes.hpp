@@ -1,5 +1,9 @@
 #pragma once
+#include "button.hpp"
+#include <memory>
 #include <raylib.h>
+
+class SceneManager;
 
 class Scene {
     public:
@@ -10,7 +14,7 @@ class Scene {
 
 class TitleScene : public Scene {
     public:
-    TitleScene();
+    TitleScene(SceneManager& sceneManager);
 
     void draw() override;
 
@@ -18,4 +22,23 @@ class TitleScene : public Scene {
 
     private:
     Font buttonFont;
+    TextButton _startButton;
+    SceneManager& _sceneManagaer;
+};
+
+class ActualScene : public Scene {
+    public:
+    ActualScene();
+
+    void draw() override;
+    void update() override;
+};
+
+class SceneManager {
+    public:
+    void setScene(std::unique_ptr<Scene> newScene);
+    Scene& getScene() const;
+
+    private:
+    std::unique_ptr<Scene> _currentScene;
 };

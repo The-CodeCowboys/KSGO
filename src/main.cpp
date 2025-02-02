@@ -1,6 +1,6 @@
-#include <SceneManager.hpp>
 #include <memory>
 #include <raylib.h>
+#include <scenes.hpp>
 
 int main(void) {
     const int screenWidth = 800;
@@ -10,14 +10,16 @@ int main(void) {
 
     SetTargetFPS(60);
 
-    std::unique_ptr<Scene> currentScene = std::make_unique<TitleScene>();
+    SceneManager sceneManager{};
+
+    sceneManager.setScene(std::make_unique<TitleScene>(sceneManager));
 
     while (!WindowShouldClose()) {
 
         BeginDrawing();
         {
-            currentScene->draw();
-            currentScene->update();
+            sceneManager.getScene().draw();
+            sceneManager.getScene().update();
         }
         EndDrawing();
     }

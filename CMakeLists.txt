@@ -10,6 +10,8 @@ find_package(raylib REQUIRED)
 # Where all the C files go
 set(PROJECT_SOURCE_FILES
     src/main.cpp
+    src/scenes.cpp
+    src/button.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path
