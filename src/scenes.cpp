@@ -65,19 +65,9 @@ void GameplayScene::draw() {
         break;
     }
 }
-
-void GameplayScene::setChosenLoadout(Loadout loadout) {
-    this->_currentPhase = GameplayPhase::TYPE;
-    this->_chosenLoadout = loadout;
-}
-
-void GameplayScene::setPlayerTypingScore(int score) {
-    this->_currentPhase = GameplayPhase::FIGHT;
-    this->_typingScore = score;
-    Data d{};
-    d.type = DataType::ROUND_START;
+ClassType classTypeFromLoadout(Loadout loadout) {
     ClassType classType;
-    switch (this->_chosenLoadout.gunName[1]) {
+    switch (loadout.gunName[1]) {
     case 'i':
         classType = ClassType::RIFLE;
         break;
@@ -88,7 +78,21 @@ void GameplayScene::setPlayerTypingScore(int score) {
         classType = ClassType::SHOTGUN;
         break;
     }
-    d.classType = classType;
+    return classType;
+}
+
+void GameplayScene::setChosenLoadout(Loadout loadout) {
+    this->_currentPhase = GameplayPhase::TYPE;
+    this->_chosenLoadout = loadout;
+    this->typingComponent.updateReferenceText(classTypeFromLoadout(loadout));
+}
+
+void GameplayScene::setPlayerTypingScore(int score) {
+    this->_currentPhase = GameplayPhase::FIGHT;
+    this->_typingScore = score;
+    Data d{};
+    d.type = DataType::ROUND_START;
+    d.classType = classTypeFromLoadout(this->_chosenLoadout);
     d.hp = 100;
     d.level = this->_typingScore;
 

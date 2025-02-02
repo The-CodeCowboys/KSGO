@@ -19,6 +19,7 @@ class TypingComponent : public Component {
     void draw() override;
     void update() override;
     void resetTime();
+    void updateReferenceText(ClassType classType);
 
     private:
     std::vector<int> _referenceText;

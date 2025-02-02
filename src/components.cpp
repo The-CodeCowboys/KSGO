@@ -21,23 +21,55 @@ Player player = {{1200, 200}, 100, playerSpeed, loadout};
 
 TypingComponent::TypingComponent(std::function<void(int)> setScoreCallback)
     : _setScoreCallback(setScoreCallback), _points(0) {
-    int length = -1;
-    int* codepoints = LoadCodepoints(
-        "Le miel devient de l'air, généralement au lever des astres, et principalement sous la constellation de "
-        "Sirius, jamais avant le lever des Pléiades, vers l'aube du jour ; aussi, à la naissance de l'aurore, les "
-        "feuilles des arbres sont-elles alors humectées de miel ; et ceux qui se trouventle matin dans les champs "
-        "sentent leurs habits et leurs cheveux enduits d'une liqueur onctueuse."
-        "Le miel devient de l'air, généralement au lever des astres, et principalement sous la constellation de "
-        "Sirius, jamais avant le lever des Pléiades, vers l'aube du jour ; aussi, à la naissance de l'aurore, les "
-        "feuilles des arbres sont-elles alors humectées de miel ; et ceux qui se trouventle matin dans les champs "
-        "sentent leurs habits et leurs cheveux enduits d'une liqueur onctueuse.",
-        &length);
-
-    _referenceText = {codepoints, codepoints + length};
+    this->updateReferenceText((ClassType)0);
     _typedText = {};
     _font = LoadFontEx(BUTTON_FONT, TypingConst::FONT_SIZE, nullptr, 0x3000);
     _drawFromColumn = 0;
     _startingTime = GetTime();
+}
+
+void TypingComponent::updateReferenceText(ClassType classType) {
+    int length = -1;
+    int* codepoints;
+    _drawFromColumn = 0;
+    switch (classType) {
+    case ClassType::RIFLE:
+        codepoints = LoadCodepoints(
+            "The rifle is the tool of a disciplined marksman, built for precision and justice. Victory belongs to "
+            "those who plan meticulously and execute flawlessly. Calculated gunfighting leaves no room for reckless "
+            "mistakes. Think before you act, aim before you shoot, success lies in control. Justice demands "
+            "discipline, not chaos. The lawful path may be difficult, but it’s guided by careful, deliberate action. "
+            "Risk only what is necessary. Efficiency wins battles and saves lives. Patience and calculation are "
+            "virtues when wielding a rifle. True power lies not in haste but in disciplined, lawful execution. "
+            "Efficiency is the hallmark of a rifleman, every shot with purpose, no wasted effort.",
+            &length);
+        break;
+    case ClassType::SHOTGUN:
+        codepoints = LoadCodepoints(
+            "The shotgun is a beast unleashed, built for fast and savage gunfighting. No time to aim, just pull the "
+            "trigger and trust your reflexes. When chaos erupts, react without thinking, speed and power will save "
+            "you. Bestial instincts kick in as the robustest fighters charge into danger. The roar of a shotgun is the "
+            "primal answer to overwhelming threats. Gunfighting with a shotgun is raw, brutal, and beautifully "
+            "efficient. In the thick of battle, only the robustest heart can keep pace. Survival demands instinct. "
+            "Hesitate and the beast will devour you. One blast from a shotgun turns panic into dominance. Be the "
+            "beast, move fast, and fight harder. It's the only way out alive.",
+            &length);
+        break;
+    case ClassType::SNIPER:
+        codepoints = LoadCodepoints(
+            "A skilled sniper breathes in rhythm to maintain precision. They adjust the scope, aiming at distant "
+            "targets with unyielding focus. Accuracy defines the difference between a clean hit and a wasted shot. The "
+            "scope magnifies both opportunity and responsibility. A true sniper's mastery lies in patience and "
+            "precision. The trigger pull must be smooth, calculated, and unwavering. Precision isn't just skill, it's "
+            "discipline perfected under pressure. Through the crosshairs, clarity meets consequence. Every second "
+            "matters when lining up the perfect shot. Wind direction and distance demand constant adjustments for "
+            "pinpoint accuracy. The trigger pull must be smooth, calculated, and unwavering.",
+            &length);
+
+        break;
+    }
+
+    _referenceText = {codepoints, codepoints + length};
 }
 
 void TypingComponent::resetTime() { this->_startingTime = GetTime(); }
@@ -150,7 +182,7 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
         "Sniper",
         LoadoutSpec{
             100,
-            20,
+            2,
             3,
             100,
             20,
@@ -162,7 +194,7 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
         "Assault Rifle",
         LoadoutSpec{
             200,
-            10,
+            5,
             25,
             40,
             20,
