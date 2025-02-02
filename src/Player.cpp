@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include "network.hpp"
 #include <cstdio>
 #include <raylib.h>
 
@@ -87,4 +88,6 @@ void Player::move() {
 
     playerHitBox.x = this->position.x;
     playerHitBox.y = this->position.y;
+
+    Network::send({DataType::PLAYER, this->position.x, this->position.y, 0, 0, false, 0, 0});
 }

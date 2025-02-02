@@ -9,13 +9,35 @@
 #include "StaticEntity.hpp"
 #include "Weapon.hpp"
 #include "map.hpp"
+#include "network.hpp"
 
 std::array<StaticEntity, 50> staticEntities = {};
 std::vector<DynamicEntity*> dynamicEntities = {};
 std::vector<DynamicEntity*> dynamicBullets = {};
 Camera2D camera = {0};
 
-int main(void) {
+int main(int argc, char* argv[]) {
+
+    
+    if (argc != 2) {
+        std::cout << "One argument must be included" << std::endl;
+        return 1;
+    }
+
+    std::string argument = argv[1];
+    NetworkType networkType;
+
+    if (argument.compare("server") == 0) {
+        networkType = NetworkType::SERVER;
+    } else if (argument.compare("client") == 0) {
+        networkType = NetworkType::CLIENT;
+    } else {
+        std::cout << "Invalid argument" << std::endl;
+        return 1;
+    }
+
+    Network::connect(networkType, "localhost", 5500);
+
     // Init
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ks:go");
     SetTargetFPS(60);
@@ -32,9 +54,44 @@ int main(void) {
     camera.rotation = 0.0f;
     camera.zoom = 0.5f;
 
+    if (Network::type() == NetworkType::CLIENT) {
+        player.position.y = 2700;
+    }
+
+    
+
+// enum class DataType { NONE=0, BULLET=1, PLAYER=2, HIT=3, DEATH=4, ROUND_END=5, ROUND_START=6 };
     // Gameloop
 
     while (!WindowShouldClose()) {
+        Data data = Network::receive();
+        switch (data.type) {
+        case DataType::NONE: 
+            break;
+
+        case DataType::BULLET: 
+            break;
+
+        case DataType::PLAYER: 
+                dynamicEntities.back()->hitBox.x = data.posX; 
+                dynamicEntities.back()->hitBox.y = data.posY; 
+                printf("posx: %f\n", data.posX);
+                printf("posy: %f\n", data.posY);
+            break;
+        
+        case DataType::HIT: 
+            break;
+        
+        case DataType::DEATH: 
+            break;
+
+        case DataType::ROUND_END: 
+            break;
+
+        case DataType::ROUND_START: 
+            break;
+
+        }
 
         // Draw
         BeginDrawing();            
