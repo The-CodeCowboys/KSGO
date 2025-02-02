@@ -12,6 +12,7 @@ set(PROJECT_SOURCE_FILES
     src/main.cpp
     src/scenes.cpp
     src/button.cpp
+    src/components.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path
