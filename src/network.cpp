@@ -8,7 +8,7 @@ void Network::connect(NetworkType type, string ip, int port) {
     networkType = type;
 
     if (networkType == NetworkType::SERVER) {
-        server = make_unique<Server>(ip, port);
+        server = make_unique<Server>(port);
         while (true) {
             bool isConnected = server->connectToClient();
             if (isConnected) { return; }

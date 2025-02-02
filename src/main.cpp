@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Network::connect(networkType, "localhost", 5500);
+    Network::connect(networkType, "172.31.173.33", 5500);
 
     // Init
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ks:go");

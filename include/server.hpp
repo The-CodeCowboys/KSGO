@@ -4,7 +4,7 @@
 
 class Server {
 public:
-    Server(std::string ip, int port);
+    Server(int port);
     bool connectToClient();
     DataArray receiveData();
     void sendData(DataArray data);
