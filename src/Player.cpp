@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <raylib.h>
 
-
+Player::Player() {}
 Player::Player(Vector2 position, int health, float speed, IWeapon& weapon) {
     this->position = position;
     this->health = health;
@@ -20,9 +20,7 @@ void Player::update() {
     render();
 }
 
-Vector2 Player::getPosition() {
-    return this->position;
-}
+Vector2 Player::getPosition() { return this->position; }
 
 void Player::setPosition(Vector2(position)) {
     this->position.x += position.x;
@@ -32,17 +30,15 @@ void Player::setPosition(Vector2(position)) {
 }
 
 int Player::getHealth() {
-    return this->health;;
+    return this->health;
+    ;
 }
 
-Rectangle Player::getHitBox() {
-    return this->playerHitBox;
-}
+Rectangle Player::getHitBox() { return this->playerHitBox; }
 
 void Player::render() {
     DrawRectangle(position.x, position.y, 100, 100, BLUE);
     this->weapon->render();
-    
 }
 
 void Player::move() {

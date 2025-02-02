@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Player.hpp"
 #include <functional>
 #include <raylib.h>
 #include <string>
@@ -13,10 +14,11 @@ class Component {
 
 class TypingComponent : public Component {
     public:
-    TypingComponent(double startingTime, std::function<void(int)> setScoreCallback);
+    TypingComponent(std::function<void(int)> setScoreCallback);
 
     void draw() override;
     void update() override;
+    void resetTime();
 
     private:
     std::vector<int> _referenceText;
@@ -66,4 +68,12 @@ class BuyMenuComponent : public Component {
 
     void drawAttributeBar(int x, int y, int nBars, int value, int maxValue, Color filledColor, Color unfilledColor);
     bool isMouseOnLoadout(int i);
+};
+
+class FightComponent : public Component {
+    public:
+    FightComponent();
+
+    void draw() override;
+    void update() override;
 };

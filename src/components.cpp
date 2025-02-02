@@ -1,9 +1,23 @@
 #include "components.hpp"
+#include "DynamicEntity.hpp"
+#include "StaticEntity.hpp"
 #include "constants.hpp"
+#include "network.hpp"
 #include <algorithm>
+#include <raylib.h>
 
-TypingComponent::TypingComponent(double startingTime, std::function<void(int)> setScoreCallback)
-    : _startingTime(startingTime), _setScoreCallback(setScoreCallback), _points(0) {
+std::array<StaticEntity, 50> staticEntities = {};
+std::vector<DynamicEntity*> dynamicEntities = {};
+std::vector<DynamicEntity*> dynamicBullets = {};
+Camera2D camera = Camera2D{0};
+float playerSpeed = 10;
+M4A4 loadout = {10, 10, 2, 0.2f};
+AWP loadout2 = {10, 10, 2, 3};
+NOVA loadout3 = {100, 10, 2, 2};
+Player player = {{1200, 200}, 100, playerSpeed, loadout};
+
+TypingComponent::TypingComponent(std::function<void(int)> setScoreCallback)
+    : _setScoreCallback(setScoreCallback), _points(0) {
     int length = -1;
     int* codepoints = LoadCodepoints(
         "Le miel devient de l'air, généralement au lever des astres, et principalement sous la constellation de "
@@ -20,7 +34,10 @@ TypingComponent::TypingComponent(double startingTime, std::function<void(int)> s
     _typedText = {};
     _font = LoadFontEx(BUTTON_FONT, TypingConst::FONT_SIZE, nullptr, 0x3000);
     _drawFromColumn = 0;
+    _startingTime = GetTime();
 }
+
+void TypingComponent::resetTime() { this->_startingTime = GetTime(); }
 
 void TypingComponent::draw() {
     ClearBackground(BLACK);
@@ -90,7 +107,7 @@ void TypingComponent::draw() {
 
 void TypingComponent::update() {
     this->updateTextbox();
-    if (GetTime() - this->_startingTime > 30) {
+    if (GetTime() - this->_startingTime > TypingConst::TYPING_TEST_LENGTH) {
         this->_setScoreCallback(this->_points);
     }
 }
@@ -299,3 +316,157 @@ bool BuyMenuComponent::isMouseOnLoadout(int i) {
 
     return CheckCollisionPointRec(GetMousePosition(), collisionBox);
 };
+
+FightComponent::FightComponent() {
+
+    camera.target = (Vector2){player.getPosition()};
+    camera.offset = (Vector2){SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f};
+    camera.rotation = 0.0f;
+    camera.zoom = 0.5f;
+
+    if (Network::type() == NetworkType::CLIENT) {
+        player.position.y = 2700;
+    }
+}
+
+void FightComponent::draw() {
+    ClearBackground(RAYWHITE);
+
+    BeginMode2D(camera);
+    DrawRectangle(-2000, -1000, 10000, 10000, BROWN);
+    DrawRectangle(1000, 0, 1000, 500, GREEN);
+    DrawRectangle(1000, 2500, 1000, 500, YELLOW);
+    player.update();
+
+    for (DynamicEntity* bullet : dynamicBullets) {
+        bullet->move();
+        bullet->render(BLUE);
+    }
+
+    for (DynamicEntity* entity : dynamicEntities) {
+        entity->render(RED);
+    }
+
+    for (StaticEntity staticEntity : staticEntities) {
+        staticEntity.render();
+    }
+
+    EndMode2D();
+
+    camera.target = (Vector2){player.getPosition()};
+}
+void FightComponent::update() {
+    Data data = Network::receive();
+
+    if (data.type == DataType::BULLET) {
+        Texture2D test;
+        Image img = LoadImage("../gun.jpg");
+        ImageDrawPixelV(&img, {0, 0}, GRAY);
+        test = LoadTextureFromImage(img);
+        // DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y,
+        // 20, 30}, 1, this->damage);
+        DynamicEntity* bullet =
+            new DynamicEntity({data.directionX, data.directionY}, {40, 40}, test,
+                              {data.posX + data.directionX * 8, data.posY + data.directionY * 8, 40, 40}, 1, 20);
+        dynamicBullets.push_back(bullet);
+    }
+
+    switch (data.type) {
+    case DataType::NONE:
+        break;
+
+    case DataType::BULLET:
+        break;
+
+    case DataType::PLAYER:
+        dynamicEntities.back()->hitBox.x = data.posX;
+        dynamicEntities.back()->hitBox.y = data.posY;
+        break;
+
+    case DataType::HIT:
+        dynamicEntities.back()->loseHealth(data.hp);
+        printf("Hp: %i\n", dynamicEntities.back()->getHealth());
+
+        if (dynamicEntities.back()->getHealth() <= 0) {
+            printf("dead\n");
+        }
+        break;
+
+    case DataType::DEATH:
+        break;
+
+    case DataType::ROUND_END:
+        break;
+
+    case DataType::ROUND_START:
+        break;
+    }
+
+    for (DynamicEntity* entity : dynamicEntities) {
+        for (DynamicEntity* bullet : dynamicBullets) {
+            if (CheckCollisionRecs(entity->getHitBox(), bullet->getHitBox())) {
+                entity->loseHealth(bullet->getDamage());
+                Network::send({DataType::HIT, 0.0, 0.0, 0.0, 0.0, false, 20, 0, ClassType::SNIPER});
+                auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                if (it != dynamicBullets.end() && bullet != nullptr) {
+                    dynamicBullets.erase(it);
+                    delete bullet;
+                }
+
+                // dynamicBullets.erase(std::remove(dynamicBullets.begin(), dynamicBullets.end(), bullet),
+                // dynamicBullets.end()); delete bullet;
+
+                // Check for where player dies
+                if (entity->getHealth() <= 0) {
+                    delete entity;
+                    dynamicEntities.erase(std::remove(dynamicEntities.begin(), dynamicEntities.end(), entity),
+                                          dynamicEntities.end());
+                }
+            }
+        }
+    }
+
+    for (StaticEntity staticEntity : staticEntities) {
+        for (DynamicEntity* bullet : dynamicBullets) {
+            if (CheckCollisionRecs(staticEntity.hitBox, bullet->getHitBox())) {
+                auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                if (it != dynamicBullets.end() && bullet != nullptr) {
+                    dynamicBullets.erase(it);
+                    delete bullet;
+                }
+            }
+        }
+    }
+
+    for (DynamicEntity* bullet : dynamicBullets) {
+        if (CheckCollisionRecs(player.getHitBox(), bullet->getHitBox())) {
+            player.health -= bullet->getDamage();
+            auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+            if (it != dynamicBullets.end() && bullet != nullptr) {
+                dynamicBullets.erase(it);
+                delete bullet;
+            }
+        }
+    }
+    // Static Entity Collision Logic
+
+    for (StaticEntity staticEntity : staticEntities) {
+        if (CheckCollisionRecs(player.getHitBox(), staticEntity.hitBox)) {
+            if (IsKeyDown(KEY_W)) {
+                player.setPosition({0, playerSpeed});
+            }
+
+            if (IsKeyDown(KEY_A)) {
+                player.setPosition({playerSpeed, 0});
+            }
+
+            if (IsKeyDown(KEY_S)) {
+                player.setPosition({0, -playerSpeed});
+            }
+
+            if (IsKeyDown(KEY_D)) {
+                player.setPosition({-playerSpeed, 0});
+            }
+        }
+    }
+}

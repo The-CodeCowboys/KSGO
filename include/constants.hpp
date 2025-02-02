@@ -22,6 +22,7 @@ constexpr Color WRONG_CHAR_COLOR = RED;
 constexpr Color DEFAULT_CHAR_COLOR = GRAY;
 constexpr int ADVANCE_WHEN_REACHING_COLUM_N = 2;
 constexpr int FONT_SIZE = 30;
+constexpr int TYPING_TEST_LENGTH = 30;
 } // namespace TypingConst
 
 constexpr int SCREEN_WIDTH = 1920;

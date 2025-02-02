@@ -54,6 +54,7 @@ class GameplayScene : public Scene {
     Loadout _chosenLoadout;
     int _typingScore;
 
-    TypingComponent typingComponent{this->_roundStartTime, [&](int i) { this->setPlayerTypingScore(i); }};
+    TypingComponent typingComponent{[&](int i) { this->setPlayerTypingScore(i); }};
     BuyMenuComponent buyMenuComponent{[&](Loadout l) { setChosenLoadout(l); }};
+    FightComponent fightingComponent{};
 };

@@ -32,7 +32,7 @@ void SceneManager::setScene(std::unique_ptr<Scene> newScene) { this->_currentSce
 Scene& SceneManager::getScene() const { return *this->_currentScene; }
 
 GameplayScene::GameplayScene() : _roundStartTime() {
-    this->_roundStartTime = GetTime();
+    this->typingComponent.resetTime();
     this->_currentPhase = GameplayPhase::BUY;
     this->_typingScore = 0;
 }
@@ -46,6 +46,7 @@ void GameplayScene::update() {
         this->typingComponent.update();
         break;
     case GameplayPhase::FIGHT:
+        this->fightingComponent.update();
         break;
     }
 }
@@ -59,6 +60,7 @@ void GameplayScene::draw() {
         this->typingComponent.draw();
         break;
     case GameplayPhase::FIGHT:
+        this->fightingComponent.draw();
         break;
     }
 }
