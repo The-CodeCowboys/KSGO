@@ -1,8 +1,5 @@
 #pragma once
-
 #include <raylib.h>
-constexpr int SCREEN_WIDTH = 1000;
-constexpr int SCREEN_HEIGHT = 800;
 
 constexpr char BUTTON_FONT[] = "resources/fonts/button.ttf";
 
@@ -26,3 +23,6 @@ constexpr Color DEFAULT_CHAR_COLOR = GRAY;
 constexpr int ADVANCE_WHEN_REACHING_COLUM_N = 2;
 constexpr int FONT_SIZE = 30;
 } // namespace TypingConst
+
+constexpr int SCREEN_WIDTH = 1920;
+constexpr int SCREEN_HEIGHT = 1080;

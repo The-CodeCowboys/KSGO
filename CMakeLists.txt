@@ -13,6 +13,14 @@ set(PROJECT_SOURCE_FILES
     src/scenes.cpp
     src/button.cpp
     src/components.cpp
+    src/Player.cpp
+    src/Weapon.cpp
+    src/DynamicEntity.cpp
+    src/StaticEntity.cpp
+    src/map.cpp
+    src/client.cpp
+    src/server.cpp
+    src/network.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path

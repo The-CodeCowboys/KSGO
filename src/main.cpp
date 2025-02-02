@@ -2,30 +2,217 @@
 #include <memory>
 #include <raylib.h>
 #include <scenes.hpp>
+#include <algorithm>
+#include <array>
+#include <cstdio>
+#include <raylib.h>
+#include <vector>
+#include "DynamicEntity.hpp"
+#include "Player.hpp"
+#include "StaticEntity.hpp"
+#include "Weapon.hpp"
+#include "map.hpp"
+#include "network.hpp"
 
-int main(void) {
-    const int screenWidth = SCREEN_WIDTH;
-    const int screenHeight = SCREEN_HEIGHT;
+std::array<StaticEntity, 50> staticEntities = {};
+std::vector<DynamicEntity*> dynamicEntities = {};
+std::vector<DynamicEntity*> dynamicBullets = {};
+Camera2D camera = {0};
 
-    InitWindow(screenWidth, screenHeight, "Raylib Test");
-
-    SetTargetFPS(60);
-
-    SceneManager sceneManager{};
-
-    sceneManager.setScene(std::make_unique<TitleScene>(sceneManager));
-
-    while (!WindowShouldClose()) {
-
-        BeginDrawing();
-        {
-            sceneManager.getScene().draw();
-            sceneManager.getScene().update();
-        }
-        EndDrawing();
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cout << "One argument must be included" << std::endl;
+        return 1;
     }
 
-    CloseWindow();
+    std::string argument = argv[1];
+    NetworkType networkType;
 
+    if (argument.compare("server") == 0) {
+        networkType = NetworkType::SERVER;
+    } else if (argument.compare("client") == 0) {
+        networkType = NetworkType::CLIENT;
+    } else {
+        std::cout << "Invalid argument" << std::endl;
+        return 1;
+    }
+
+    Network::connect(networkType, "0.0.0.0", 5555);
+
+    // Init
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ks:go");
+    SetTargetFPS(60);
+
+    Map gameMap;
+    gameMap.initMap();
+    M4A4 loadout = {10, 10, 2, 0.2f};
+    AWP loadout2 = {10, 10, 2, 3};
+    NOVA loadout3 = {100, 10, 2, 2};
+    float playerSpeed = 10;
+    Player player = {{1200, 200}, 100, playerSpeed, loadout};
+    camera.target = (Vector2) {player.getPosition()};
+    camera.offset = (Vector2){ SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f };
+    camera.rotation = 0.0f;
+    camera.zoom = 0.5f;
+
+    if (Network::type() == NetworkType::CLIENT) {
+        player.position.y = 2700;
+    }
+
+    
+
+// enum class DataType { NONE=0, BULLET=1, PLAYER=2, HIT=3, DEATH=4, ROUND_END=5, ROUND_START=6 };
+    // Gameloop
+
+    while (!WindowShouldClose()) {
+        Data data = Network::receive();
+
+
+        if (data.type == DataType::BULLET) {
+            Texture2D test;
+            Image img = LoadImage("../gun.jpg");
+            ImageDrawPixelV(&img, {0, 0}, GRAY);
+            test = LoadTextureFromImage(img);
+            // DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y, 20, 30}, 1, this->damage);
+            DynamicEntity* bullet = new DynamicEntity({data.directionX, data.directionY}, {40, 40}, test, {data.posX + data.directionX * 8, data.posY + data.directionY * 8, 40, 40}, 1, 20);
+            dynamicBullets.push_back(bullet);
+        }
+
+        switch (data.type) {
+        case DataType::NONE: 
+            break;
+
+        case DataType::BULLET: 
+        break;
+
+        case DataType::PLAYER: 
+                dynamicEntities.back()->hitBox.x = data.posX; 
+                dynamicEntities.back()->hitBox.y = data.posY; 
+            break;
+        
+        case DataType::HIT: 
+                dynamicEntities.back()->loseHealth(data.hp);
+                printf("Hp: %i\n", dynamicEntities.back()->getHealth());
+
+                if (dynamicEntities.back()->getHealth() <= 0) {
+                    printf("dead\n");
+                }
+            break;
+        
+        case DataType::DEATH: 
+            break;
+
+        case DataType::ROUND_END: 
+            break;
+
+        case DataType::ROUND_START: 
+            break;
+
+        }
+
+        // Draw
+        BeginDrawing();            
+            ClearBackground(RAYWHITE);
+
+            BeginMode2D(camera);
+                DrawRectangle(-2000, -1000, 10000, 10000, BROWN);
+                DrawRectangle(1000, 0, 1000, 500, GREEN);
+                DrawRectangle(1000, 2500, 1000, 500, YELLOW);
+                player.update();
+            
+                for (DynamicEntity* bullet : dynamicBullets) {
+                    bullet->move();
+                    bullet->render(BLUE);
+                }
+
+                for (DynamicEntity* entity : dynamicEntities) {
+                    entity->render(RED);
+                }
+
+                for (StaticEntity staticEntity : staticEntities) {
+                    staticEntity.render();
+                }
+
+                // Entity Collision Logic
+
+                for (DynamicEntity* entity : dynamicEntities) {
+                    for (DynamicEntity* bullet : dynamicBullets) {
+                        if (CheckCollisionRecs(entity->getHitBox(), bullet->getHitBox())) {
+                            entity->loseHealth(bullet->getDamage());
+                            Network::send({DataType::HIT, 0.0, 0.0, 0.0, 0.0, false, 20, 0, ClassType::SNIPER});
+                            auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                            if (it != dynamicBullets.end() && bullet != nullptr) {
+                                dynamicBullets.erase(it);
+                                delete bullet;
+                            }
+
+                            // dynamicBullets.erase(std::remove(dynamicBullets.begin(), dynamicBullets.end(), bullet), dynamicBullets.end());
+                            // delete bullet;
+
+
+                            // Check for where player dies
+                            if (entity->getHealth() <= 0) {
+                                delete entity;
+                                dynamicEntities.erase(std::remove(dynamicEntities.begin(), dynamicEntities.end(), entity), dynamicEntities.end());
+                            }
+                        }
+                    }
+                }
+
+                for (StaticEntity staticEntity : staticEntities) {
+                    for (DynamicEntity* bullet : dynamicBullets) {
+                        if (CheckCollisionRecs(staticEntity.hitBox, bullet->getHitBox())) {
+                            auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                            if (it != dynamicBullets.end() && bullet != nullptr) {
+                                dynamicBullets.erase(it);
+                                delete bullet;
+                            }
+                        }
+                    }
+                }
+
+
+                
+                for (DynamicEntity* bullet : dynamicBullets) {
+                    if (CheckCollisionRecs(player.getHitBox(), bullet->getHitBox())) {
+                        player.health -= bullet->getDamage();
+                        auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                        if (it != dynamicBullets.end() && bullet != nullptr) {
+                            dynamicBullets.erase(it);
+                            delete bullet;
+                        }
+                    }
+                }
+                // Static Entity Collision Logic
+
+                    for (StaticEntity staticEntity : staticEntities) {
+                        if (CheckCollisionRecs(player.getHitBox(), staticEntity.hitBox)) {
+                            if (IsKeyDown(KEY_W)) {
+                                player.setPosition({0, playerSpeed});
+                            }
+
+                            if (IsKeyDown(KEY_A)) {
+                                player.setPosition({playerSpeed, 0});
+                            }
+
+                            if (IsKeyDown(KEY_S)) {
+                                player.setPosition({0, -playerSpeed});
+                            }
+
+                            if (IsKeyDown(KEY_D)) {
+                                player.setPosition({-playerSpeed, 0});
+                            }
+                        }
+                    }
+
+            EndMode2D();
+        EndDrawing();
+
+        // Update
+        camera.target = (Vector2) {player.getPosition()}; // Might want to pass the camera as a parameter of the player
+
+    }
+
+    // Exit
     return 0;
 }
