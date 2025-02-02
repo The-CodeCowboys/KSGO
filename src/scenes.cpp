@@ -14,7 +14,7 @@ TitleScene::TitleScene(SceneManager& sceneManager) : Scene(), _sceneManagaer(sce
     buttonHoverFontStyle.color = {20, 60, 20, 255};
     this->_startButton = TextButton{
         {SCREEN_WIDTH / 2.0, SCREEN_HEIGHT / 2.0},
-        {"Start Button"},
+        {"Start"},
         buttonFontStyle,
         buttonHoverFontStyle,
         [&] { this->_sceneManagaer.setScene(std::make_unique<GameplayScene>()); },
@@ -39,6 +39,7 @@ GameplayScene::GameplayScene() : _roundStartTime() {
 }
 
 void GameplayScene::update() {
+    this->fightingComponent.update();
     switch (_currentPhase) {
     case GameplayPhase::BUY:
         this->buyMenuComponent.update();
@@ -47,12 +48,12 @@ void GameplayScene::update() {
         this->typingComponent.update();
         break;
     case GameplayPhase::FIGHT:
-        this->fightingComponent.update();
         break;
     }
 }
 
 void GameplayScene::draw() {
+    this->fightingComponent.draw();
     switch (_currentPhase) {
     case GameplayPhase::BUY:
         this->buyMenuComponent.draw();
@@ -61,12 +62,11 @@ void GameplayScene::draw() {
         this->typingComponent.draw();
         break;
     case GameplayPhase::FIGHT:
-        this->fightingComponent.draw();
         break;
     }
 }
 
-void GameplayScene::setChosenLoadout(ClassType loadout) {
+void GameplayScene::setChosenLoadout(Loadout loadout) {
     this->_currentPhase = GameplayPhase::TYPE;
     this->_chosenLoadout = loadout;
 }
@@ -76,7 +76,19 @@ void GameplayScene::setPlayerTypingScore(int score) {
     this->_typingScore = score;
     Data d{};
     d.type = DataType::ROUND_START;
-    d.classType = this->_chosenLoadout;
+    ClassType classType;
+    switch (this->_chosenLoadout.gunName[1]) {
+    case 'i':
+        classType = ClassType::RIFLE;
+        break;
+    case 'n':
+        classType = ClassType::SNIPER;
+        break;
+    case 'h':
+        classType = ClassType::SHOTGUN;
+        break;
+    }
+    d.classType = classType;
     d.hp = 100;
     d.level = this->_typingScore;
 

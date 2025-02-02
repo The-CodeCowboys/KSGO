@@ -51,14 +51,14 @@ struct Loadout {
 
 class BuyMenuComponent : public Component {
     public:
-    BuyMenuComponent(std::function<void(ClassType)> loadoutChosenCallback);
+    BuyMenuComponent(std::function<void(Loadout)> loadoutChosenCallback);
 
     void draw() override;
 
     void update() override;
 
     private:
-    std::function<void(ClassType)> _loadoutChosenCallback;
+    std::function<void(Loadout)> _loadoutChosenCallback;
     float _nLoadouts;
     float _sideMargin;
     float _loadoutsGap;

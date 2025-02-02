@@ -43,7 +43,6 @@ TypingComponent::TypingComponent(std::function<void(int)> setScoreCallback)
 void TypingComponent::resetTime() { this->_startingTime = GetTime(); }
 
 void TypingComponent::draw() {
-    ClearBackground(BLACK);
 
     DrawRectangle(TypingConst::BOX_MARGIN - TypingConst::BOX_BORDER_SIZE,
                   (SCREEN_HEIGHT - TypingConst::BOX_MARGIN) / 2 - TypingConst::BOX_BORDER_SIZE,
@@ -183,7 +182,7 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
     },
 };
 
-BuyMenuComponent::BuyMenuComponent(std::function<void(ClassType)> loadoutChosenCallback)
+BuyMenuComponent::BuyMenuComponent(std::function<void(Loadout)> loadoutChosenCallback)
     : _loadoutChosenCallback(loadoutChosenCallback) {
     this->_sideMargin = 30;
     this->_verticalMargin = 40;
@@ -242,7 +241,6 @@ std::array<AttributeDrawingData, 5> attributeDrawingData = {{
 }};
 
 void BuyMenuComponent::draw() {
-    ClearBackground(BLACK);
     int x = _sideMargin;
     for (int i = 0; i < _nLoadouts; i++) {
         int y = _verticalMargin;
@@ -302,7 +300,7 @@ void BuyMenuComponent::update() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         for (int i = 0; i < _nLoadouts; i++) {
             if (isMouseOnLoadout(i)) {
-                _loadoutChosenCallback((ClassType)i);
+                _loadoutChosenCallback(Loadout::availableLoadouts[i]);
             }
         }
     }

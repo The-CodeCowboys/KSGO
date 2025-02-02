@@ -47,15 +47,15 @@ class GameplayScene : public Scene {
     void update() override;
 
     private:
-    void setChosenLoadout(ClassType loadout);
+    void setChosenLoadout(Loadout loadout);
     void setPlayerTypingScore(int score);
 
     double _roundStartTime;
     GameplayPhase _currentPhase;
-    ClassType _chosenLoadout;
+    Loadout _chosenLoadout;
     int _typingScore;
 
     TypingComponent typingComponent{[&](int i) { this->setPlayerTypingScore(i); }};
-    BuyMenuComponent buyMenuComponent{[&](ClassType loadout) { setChosenLoadout(loadout); }};
+    BuyMenuComponent buyMenuComponent{[&](Loadout loadout) { setChosenLoadout(loadout); }};
     FightComponent fightingComponent{};
 };
