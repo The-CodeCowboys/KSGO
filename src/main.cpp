@@ -1,37 +1,95 @@
-// #include "raylib.h"
-// #include "networking.hpp"
-#include "rtc/rtc.hpp"
-#include <string>
-#include <iostream>
+#include "server.hpp"
+#include "client.hpp"
 
-using std::string;
+#include <thread>
+#include <chrono>
 
-int main(void) {
-    rtc::Configuration config;
-    config.iceServers.emplace_back("mystunserver.org:3478");
+constexpr int port = 5022;
 
-    rtc::PeerConnection pc(config);
+void runServer() {
+    std::cout << "2 RUNNING SERVER" << std::endl;
 
-    pc.onLocalDescription([](rtc::Description sdp) {
-        // Send the SDP to the remote peer
-        std::cout << "onLocalDescription: " << string(sdp) << std::endl;
-    });
+    Server server = Server(port);
 
-    pc.onLocalCandidate([](rtc::Candidate candidate) {
-        // Send the candidate to the remote peer
-        std::cout << "candidate.candidate(): " << string(sdp) << std::endl;
-        MY_SEND_CANDIDATE_TO_REMOTE(candidate.candidate(), candidate.mid());
-    });
+    while (true) {
+        bool isConnected = server.connectToClient();
 
-    MY_ON_RECV_DESCRIPTION_FROM_REMOTE([&pc](string sdp) {
-        pc.setRemoteDescription(rtc::Description(sdp));
-    });
+        if (isConnected) {
+            std::cout << "YES connected to client" << std::endl;
+            break;
+        }
 
-    MY_ON_RECV_CANDIDATE_FROM_REMOTE([&pc](string candidate, string mid) {
-        pc.addRemoteCandidate(rtc::Candidate(candidate, mid));
-    });
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::cout << "NOT connected to client" << std::endl;
+    }
 
-    while (true) {}
+    while (true) {
+        string msg = server.readMsg();
+        if (msg.length() <= 0) {
+            std::cout << "NO msg from client" << std::endl;
+        } else {
+            std::cout << "YES msg from client: " << msg << std::endl;
+        }
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        // server.sendMsg("Hello from server");
+        // std::cout << "Sending msg to server" << std::endl;
+        // std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+
+    std::cout << "CLOSING SERVER" << std::endl;
+}
+
+void runClient() {
+    std::cout << "2 RUNNING CLIENT" << std::endl;
+
+    Client client = Client();
+
+    while (true) {
+        bool isConnected = client.connectToServer("localhost", port);
+
+        if (isConnected) {
+            std::cout << "YES connected to server" << std::endl;
+            break;
+        }
+
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        std::cout << "NOT connected to server" << std::endl;
+    }
+
+    while (true) {
+        // string msg = client.readMsg();
+        // if (msg.length() <= 0) {
+        //     std::cout << "NO msg from server" << std::endl;
+        // } else {
+        //     std::cout << "YES msg from server: " << msg << std::endl;
+        // }
+        // std::this_thread::sleep_for(std::chrono::seconds(1));
+
+        client.sendMsg("Hello from client");
+        std::cout << "Sending msg to server" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+
+    std::cout << "CLOSING CLIENT" << std::endl;
+}
+
+int main(int argc, char* argv[]) {
+    if (argc != 2) {
+        std::cout << "One argument must be included" << std::endl;
+        return 1;
+    }
+
+    string argument = argv[1];
+
+    if (argument.compare("server") == 0) {
+        runServer();
+    } else if (argument.compare("client") == 0) {
+        runClient();
+    } else {
+        std::cout << "Invalid argument" << std::endl;
+        return 1;
+    }
 
     return 0;
 }

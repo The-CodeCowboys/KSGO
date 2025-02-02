@@ -11,7 +11,9 @@ find_package(LibDataChannel REQUIRED)
 # Where all the C files go
 set(PROJECT_SOURCE_FILES
     src/main.cpp
-    src/networking.cpp
+    src/client.cpp
+    src/server.cpp
+    src/network.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path
