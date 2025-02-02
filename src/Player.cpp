@@ -1,4 +1,5 @@
 #include "Player.hpp"
+#include <cstdio>
 #include <raylib.h>
 
 
@@ -38,7 +39,7 @@ Rectangle Player::getHitBox() {
 }
 
 void Player::render() {
-    DrawRectangle(position.x, position.y, 50, 50, RED);
+    DrawRectangle(position.x, position.y, 100, 100, BLUE);
     this->weapon->render();
     
 }
@@ -46,21 +47,44 @@ void Player::render() {
 void Player::move() {
     if (IsKeyDown(KEY_W)) {
         this->position.y -= speed;
-        this->playerHitBox.y = this->position.y;
     }
 
     if (IsKeyDown(KEY_A)) {
         this->position.x -= speed;
-        this->playerHitBox.x = this->position.x;
     }
 
     if (IsKeyDown(KEY_S)) {
         this->position.y += speed;
-        this->playerHitBox.y = this->position.y;
     }
 
     if (IsKeyDown(KEY_D)) {
         this->position.x += speed;
-        this->playerHitBox.x = this->position.x;
     }
+
+    if (IsKeyDown(KEY_W) && IsKeyDown(KEY_A) && !IsKeyDown(KEY_D)) {
+        this->position.x -= speed * (0.71 - 1);
+        this->position.y -= speed * (0.71 - 1);
+        printf("I RUN\n");
+    }
+
+    if (IsKeyDown(KEY_W) && IsKeyDown(KEY_D) && !IsKeyDown(KEY_A)) {
+        this->position.x += speed * (0.71 - 1);
+        this->position.y -= speed * (0.71 - 1);
+        printf("I RUN\n");
+    }
+
+    if (IsKeyDown(KEY_S) && IsKeyDown(KEY_A) && !IsKeyDown(KEY_D)) {
+        this->position.x -= speed * (0.71 - 1);
+        this->position.y += speed * (0.71 - 1);
+        printf("I RUN\n");
+    }
+
+    if (IsKeyDown(KEY_S) && IsKeyDown(KEY_D) && !IsKeyDown(KEY_A)) {
+        this->position.x += speed * (0.71 - 1);
+        this->position.y += speed * (0.71 - 1);
+        printf("I RUN\n");
+    }
+
+    playerHitBox.x = this->position.x;
+    playerHitBox.y = this->position.y;
 }

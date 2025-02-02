@@ -1,6 +1,8 @@
 #include "Weapon.hpp"
+#include "constants.hpp"
 #include "DynamicEntity.hpp"
 #include <cmath>
+#include <complex>
 #include <cstdio>
 #include <raylib.h>
 #include <rlgl.h>
@@ -52,6 +54,10 @@ void M4A4::shoot() {
         float x = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).x - this->position.x;
         float y = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).y - this->position.y;
 
+        float norm = sqrt(x*x + y*y);
+        x = (x / norm) * 100;
+        y = (y / norm) * 100;
+
         DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y, 50, 30}, 1, this->damage);
         dynamicBullets.push_back(bullet);
     }
@@ -100,6 +106,10 @@ void AWP::shoot() {
         test = LoadTextureFromImage(img);
         float x = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).x - this->position.x;
         float y = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).y - this->position.y;
+
+        float norm = sqrt(x*x + y*y);
+        x = (x / norm) * 100;
+        y = (y / norm) * 100;
 
         DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y, 20, 30}, 1, this->damage);
         dynamicBullets.push_back(bullet);
@@ -154,8 +164,15 @@ void NOVA::shoot() {
         Image img = LoadImage("../gun.jpg");
         ImageDrawPixelV(&img, this->position, GRAY);
         test = LoadTextureFromImage(img);
-        float x = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).x - this->position.x;
-        float y = GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).y - this->position.y;
+        float x = (GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).x - this->position.x);
+        float y = (GetScreenToWorld2D({(float)GetMouseX(), (float)GetMouseY()}, camera).y - this->position.y);
+
+        float norm = sqrt(x*x + y*y);
+        x = (x / norm) * 100;
+        y = (y / norm) * 100;
+
+        printf("x: %f\n", x);
+        printf("y: %f\n", y);
 
         DynamicEntity* bullet0 = new DynamicEntity({x+ 10, y+10}, {40, 40}, test, {this->position.x, this->position.y, 20, 30}, 1, this->damage);
         DynamicEntity* bullet1 = new DynamicEntity({x-10, y-10}, {40, 40}, test, {this->position.x, this->position.y, 20, 30}, 1, this->damage);

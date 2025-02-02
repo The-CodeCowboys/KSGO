@@ -26,7 +26,7 @@ int main(void) {
     AWP loadout2 = {10, 10, 2, 3};
     NOVA loadout3 = {100, 10, 2, 2};
     float playerSpeed = 10;
-    Player player = {{100, 100}, 100, playerSpeed, loadout2};
+    Player player = {{1200, 200}, 100, playerSpeed, loadout};
     camera.target = (Vector2) {player.getPosition()};
     camera.offset = (Vector2){ SCREEN_WIDTH/2.0f, SCREEN_HEIGHT/2.0f };
     camera.rotation = 0.0f;
@@ -42,6 +42,8 @@ int main(void) {
 
             BeginMode2D(camera);
                 DrawRectangle(-2000, -1000, 10000, 10000, BROWN);
+                DrawRectangle(1000, 0, 1000, 500, GREEN);
+                DrawRectangle(1000, 2500, 1000, 500, YELLOW);
                 player.update();
             
                 for (DynamicEntity* bullet : dynamicBullets) {
