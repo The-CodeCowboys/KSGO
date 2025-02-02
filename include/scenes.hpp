@@ -1,6 +1,7 @@
 #pragma once
 #include "button.hpp"
 #include "components.hpp"
+#include "network.hpp"
 #include <memory>
 #include <raylib.h>
 
@@ -46,15 +47,15 @@ class GameplayScene : public Scene {
     void update() override;
 
     private:
-    void setChosenLoadout(Loadout loadout);
+    void setChosenLoadout(ClassType loadout);
     void setPlayerTypingScore(int score);
 
     double _roundStartTime;
     GameplayPhase _currentPhase;
-    Loadout _chosenLoadout;
+    ClassType _chosenLoadout;
     int _typingScore;
 
     TypingComponent typingComponent{[&](int i) { this->setPlayerTypingScore(i); }};
-    BuyMenuComponent buyMenuComponent{[&](Loadout l) { setChosenLoadout(l); }};
+    BuyMenuComponent buyMenuComponent{[&](ClassType loadout) { setChosenLoadout(loadout); }};
     FightComponent fightingComponent{};
 };

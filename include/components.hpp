@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Player.hpp"
+#include "network.hpp"
 #include <functional>
 #include <raylib.h>
 #include <string>
@@ -51,14 +51,14 @@ struct Loadout {
 
 class BuyMenuComponent : public Component {
     public:
-    BuyMenuComponent(std::function<void(Loadout)> loadoutChosenCallback);
+    BuyMenuComponent(std::function<void(ClassType)> loadoutChosenCallback);
 
     void draw() override;
 
     void update() override;
 
     private:
-    std::function<void(Loadout)> _loadoutChosenCallback;
+    std::function<void(ClassType)> _loadoutChosenCallback;
     float _nLoadouts;
     float _sideMargin;
     float _loadoutsGap;
@@ -76,4 +76,7 @@ class FightComponent : public Component {
 
     void draw() override;
     void update() override;
+
+    private:
+    bool _roundStarted;
 };

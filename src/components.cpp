@@ -1,9 +1,12 @@
 #include "components.hpp"
 #include "DynamicEntity.hpp"
+#include "Player.hpp"
 #include "StaticEntity.hpp"
+#include "Weapon.hpp"
 #include "constants.hpp"
 #include "network.hpp"
 #include <algorithm>
+#include <cmath>
 #include <raylib.h>
 
 std::array<StaticEntity, 50> staticEntities = {};
@@ -156,18 +159,6 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
     },
     Loadout{
         nullptr,
-        "Brute",
-        "Shotgun",
-        LoadoutSpec{
-            300,
-            5,
-            20,
-            50,
-            20,
-        },
-    },
-    Loadout{
-        nullptr,
         "Corp",
         "Assault Rifle",
         LoadoutSpec{
@@ -178,9 +169,21 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
             20,
         },
     },
+    Loadout{
+        nullptr,
+        "Brute",
+        "Shotgun",
+        LoadoutSpec{
+            300,
+            5,
+            20,
+            50,
+            20,
+        },
+    },
 };
 
-BuyMenuComponent::BuyMenuComponent(std::function<void(Loadout)> loadoutChosenCallback)
+BuyMenuComponent::BuyMenuComponent(std::function<void(ClassType)> loadoutChosenCallback)
     : _loadoutChosenCallback(loadoutChosenCallback) {
     this->_sideMargin = 30;
     this->_verticalMargin = 40;
@@ -299,7 +302,7 @@ void BuyMenuComponent::update() {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
         for (int i = 0; i < _nLoadouts; i++) {
             if (isMouseOnLoadout(i)) {
-                _loadoutChosenCallback(Loadout::availableLoadouts[i]);
+                _loadoutChosenCallback((ClassType)i);
             }
         }
     }
@@ -327,6 +330,8 @@ FightComponent::FightComponent() {
     if (Network::type() == NetworkType::CLIENT) {
         player.position.y = 2700;
     }
+
+    _roundStarted = false;
 }
 
 void FightComponent::draw() {
@@ -336,47 +341,48 @@ void FightComponent::draw() {
     DrawRectangle(-2000, -1000, 10000, 10000, BROWN);
     DrawRectangle(1000, 0, 1000, 500, GREEN);
     DrawRectangle(1000, 2500, 1000, 500, YELLOW);
-    player.update();
 
-    for (DynamicEntity* bullet : dynamicBullets) {
-        bullet->move();
-        bullet->render(BLUE);
+    if (_roundStarted) {
+        player.update();
+
+        for (DynamicEntity* bullet : dynamicBullets) {
+            bullet->move();
+            bullet->render(BLUE);
+        }
+
+        for (DynamicEntity* entity : dynamicEntities) {
+            entity->render(RED);
+        }
+
+        for (StaticEntity staticEntity : staticEntities) {
+            staticEntity.render();
+        }
+
+        EndMode2D();
+
+        camera.target = (Vector2){player.getPosition()};
     }
-
-    for (DynamicEntity* entity : dynamicEntities) {
-        entity->render(RED);
-    }
-
-    for (StaticEntity staticEntity : staticEntities) {
-        staticEntity.render();
-    }
-
-    EndMode2D();
-
-    camera.target = (Vector2){player.getPosition()};
 }
 void FightComponent::update() {
     Data data = Network::receive();
 
-    if (data.type == DataType::BULLET) {
-        Texture2D test;
-        Image img = LoadImage("../gun.jpg");
-        ImageDrawPixelV(&img, {0, 0}, GRAY);
-        test = LoadTextureFromImage(img);
-        // DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y,
-        // 20, 30}, 1, this->damage);
-        DynamicEntity* bullet =
-            new DynamicEntity({data.directionX, data.directionY}, {40, 40}, test,
-                              {data.posX + data.directionX * 8, data.posY + data.directionY * 8, 40, 40}, 1, 20);
-        dynamicBullets.push_back(bullet);
-    }
+    TraceLog(LOG_INFO, "%d", _roundStarted ? 1 : 0);
 
     switch (data.type) {
     case DataType::NONE:
         break;
 
-    case DataType::BULLET:
+    case DataType::BULLET: {
+        Texture2D test;
+        Image img = LoadImage("../gun.jpg");
+        ImageDrawPixelV(&img, {0, 0}, GRAY);
+        test = LoadTextureFromImage(img);
+        DynamicEntity* bullet =
+            new DynamicEntity({data.directionX, data.directionY}, {40, 40}, test,
+                              {data.posX + data.directionX * 8, data.posY + data.directionY * 8, 40, 40}, 1, 20);
+        dynamicBullets.push_back(bullet);
         break;
+    }
 
     case DataType::PLAYER:
         dynamicEntities.back()->hitBox.x = data.posX;
@@ -396,10 +402,16 @@ void FightComponent::update() {
         break;
 
     case DataType::ROUND_END:
+        _roundStarted = false;
         break;
 
     case DataType::ROUND_START:
+        _roundStarted = true;
         break;
+    }
+
+    if (!_roundStarted) {
+        return;
     }
 
     for (DynamicEntity* entity : dynamicEntities) {

@@ -1,6 +1,7 @@
 #include "scenes.hpp"
 #include "button.hpp"
 #include "constants.hpp"
+#include "network.hpp"
 #include <functional>
 #include <memory>
 #include <raylib.h>
@@ -65,7 +66,7 @@ void GameplayScene::draw() {
     }
 }
 
-void GameplayScene::setChosenLoadout(Loadout loadout) {
+void GameplayScene::setChosenLoadout(ClassType loadout) {
     this->_currentPhase = GameplayPhase::TYPE;
     this->_chosenLoadout = loadout;
 }
@@ -73,4 +74,11 @@ void GameplayScene::setChosenLoadout(Loadout loadout) {
 void GameplayScene::setPlayerTypingScore(int score) {
     this->_currentPhase = GameplayPhase::FIGHT;
     this->_typingScore = score;
+    Data d{};
+    d.type = DataType::ROUND_START;
+    d.classType = this->_chosenLoadout;
+    d.hp = 100;
+    d.level = this->_typingScore;
+
+    Network::send(d);
 }
