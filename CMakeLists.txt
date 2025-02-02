@@ -10,6 +10,10 @@ find_package(raylib REQUIRED)
 # Where all the C files go
 set(PROJECT_SOURCE_FILES
     src/main.cpp
+    src/Player.cpp
+    src/Weapon.cpp
+    src/DynamicEntity.cpp
+    src/StaticEntity.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path
