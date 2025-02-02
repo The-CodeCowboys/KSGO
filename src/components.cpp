@@ -151,7 +151,7 @@ std::array<Loadout, 3> Loadout::availableLoadouts = {
         "Sniper",
         LoadoutSpec{
             100,
-            2,
+            20,
             3,
             100,
             20,
@@ -342,6 +342,14 @@ void FightComponent::draw() {
     DrawRectangle(1000, 0, 1000, 500, GREEN);
     DrawRectangle(1000, 2500, 1000, 500, YELLOW);
 
+    for (DynamicEntity* entity : dynamicEntities) {
+        entity->render(RED);
+    }
+
+    for (StaticEntity staticEntity : staticEntities) {
+        staticEntity.render();
+    }
+
     if (_roundStarted) {
         player.update();
 
@@ -349,24 +357,13 @@ void FightComponent::draw() {
             bullet->move();
             bullet->render(BLUE);
         }
-
-        for (DynamicEntity* entity : dynamicEntities) {
-            entity->render(RED);
-        }
-
-        for (StaticEntity staticEntity : staticEntities) {
-            staticEntity.render();
-        }
-
-        EndMode2D();
-
-        camera.target = (Vector2){player.getPosition()};
     }
+
+    EndMode2D();
+    camera.target = (Vector2){player.getPosition()};
 }
 void FightComponent::update() {
     Data data = Network::receive();
-
-    TraceLog(LOG_INFO, "%d", _roundStarted ? 1 : 0);
 
     switch (data.type) {
     case DataType::NONE:
