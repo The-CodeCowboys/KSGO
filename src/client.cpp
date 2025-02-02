@@ -21,17 +21,17 @@ bool Client::connectToServer(string ip, int port) {
     return true;
 }
 
-string Client::readMsg() {
-    char buffer[1024];
-    ssize_t msg_size = recv(this->tcpSocket, buffer, sizeof(buffer), 0);
+DataArray Client::receiveData() {
+    DataArray data;
+    ssize_t msg_size = recv(this->tcpSocket, data.data(), data.size(), 0);
     if (msg_size <= 0) {
-        return "";
+        return Network::dataToDataArray(DEFAULT_DATA);
     }
-    return string(buffer, msg_size);
+    return data;
 }
 
-void Client::sendMsg(string msg) {
-    ssize_t bytes_sent = send(this->tcpSocket, msg.c_str(), msg.size(), 0);
+void Client::sendData(DataArray data) {
+    send(this->tcpSocket, data.data(), data.size(), 0);
 }
 
 Client::~Client() {

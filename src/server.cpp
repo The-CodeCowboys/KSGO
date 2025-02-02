@@ -31,17 +31,20 @@ bool Server::connectToClient() {
     return true;
 }
 
-string Server::readMsg() {
+DataArray Server::receiveData() {
     char buffer[1024];
     ssize_t msg_size = recv(this->clientSocket, buffer, sizeof(buffer), 0);
     if (msg_size <= 0) {
-        return "";
+        return Network::dataToDataArray(DEFAULT_DATA);
     }
-    return string(buffer, msg_size);
+    DataArray data;
+    std::memcpy(data.data(), buffer, DATA_SIZE);
+
+    return data;
 }
 
-void Server::sendMsg(string msg) {
-    ssize_t bytes_sent = send(this->clientSocket, msg.c_str(), msg.size(), 0);
+void Server::sendData(DataArray data) {
+    send(this->clientSocket, data.data(), data.size(), 0);
 }
 
 Server::~Server() {

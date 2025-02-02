@@ -1,20 +1,13 @@
 #pragma once
 
-#include <iostream>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <arpa/inet.h>
-
-using std::string;
+#include "network.hpp"
 
 class Server {
 public:
     Server(int port);
     bool connectToClient();
-    string readMsg();
-    void sendMsg(string msg);
+    DataArray receiveData();
+    void sendData(DataArray data);
     ~Server();
 
 private:
