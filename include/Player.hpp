@@ -20,6 +20,7 @@ class Player {
         Texture2D playerTexture;
         Rectangle playerHitBox;
         Vector2 position;
+        bool orientation;
         int health;
         float speed;
         IWeapon* weapon;

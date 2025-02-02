@@ -1,12 +1,11 @@
 #pragma once
-
 #include <raylib.h>
-struct StaticEntity {
+
+class StaticEntity {
+public:
     Vector2 position;
     Texture2D texture;
     Rectangle hitBox;
 
-    void render() {
-        DrawTextureV(texture, position, RED);
-    }
+    void render();
 };

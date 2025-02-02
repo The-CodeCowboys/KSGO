@@ -14,6 +14,7 @@ set(PROJECT_SOURCE_FILES
     src/Weapon.cpp
     src/DynamicEntity.cpp
     src/StaticEntity.cpp
+    src/map.cpp
 )
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON) # Fixes includes path
