@@ -3,6 +3,7 @@ project (KeyboardShooter)
 
 # All packages used
 find_package(raylib REQUIRED)
+find_package(LibDataChannel REQUIRED)
 
 # Set static linking
 # set(CMAKE_EXE_LINKER_FLAGS "-static")
@@ -20,6 +21,7 @@ add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_FILES})
 # Libraries
 target_link_libraries(${PROJECT_NAME}
     raylib
+    /usr/local/lib64
 )
 
 # Includes
