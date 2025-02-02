@@ -36,7 +36,7 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    Network::connect(networkType, "172.31.173.33", 5500);
+    Network::connect(networkType, "0.0.0.0", 5555);
 
     // Init
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "ks:go");
@@ -65,21 +65,37 @@ int main(int argc, char* argv[]) {
 
     while (!WindowShouldClose()) {
         Data data = Network::receive();
+
+
+        if (data.type == DataType::BULLET) {
+            Texture2D test;
+            Image img = LoadImage("../gun.jpg");
+            ImageDrawPixelV(&img, {0, 0}, GRAY);
+            test = LoadTextureFromImage(img);
+            // DynamicEntity* bullet = new DynamicEntity({x, y}, {40, 40}, test, {this->position.x, this->position.y, 20, 30}, 1, this->damage);
+            DynamicEntity* bullet = new DynamicEntity({data.directionX, data.directionY}, {40, 40}, test, {data.posX + data.directionX * 8, data.posY + data.directionY * 8, 40, 40}, 1, 20);
+            dynamicBullets.push_back(bullet);
+        }
+
         switch (data.type) {
         case DataType::NONE: 
             break;
 
         case DataType::BULLET: 
-            break;
+        break;
 
         case DataType::PLAYER: 
                 dynamicEntities.back()->hitBox.x = data.posX; 
                 dynamicEntities.back()->hitBox.y = data.posY; 
-                printf("posx: %f\n", data.posX);
-                printf("posy: %f\n", data.posY);
             break;
         
         case DataType::HIT: 
+                dynamicEntities.back()->loseHealth(data.hp);
+                printf("Hp: %i\n", dynamicEntities.back()->getHealth());
+
+                if (dynamicEntities.back()->getHealth() <= 0) {
+                    printf("dead\n");
+                }
             break;
         
         case DataType::DEATH: 
@@ -122,7 +138,7 @@ int main(int argc, char* argv[]) {
                     for (DynamicEntity* bullet : dynamicBullets) {
                         if (CheckCollisionRecs(entity->getHitBox(), bullet->getHitBox())) {
                             entity->loseHealth(bullet->getDamage());
-
+                            Network::send({DataType::HIT, 0.0, 0.0, 0.0, 0.0, false, 20, 0, ClassType::SNIPER});
                             auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
                             if (it != dynamicBullets.end() && bullet != nullptr) {
                                 dynamicBullets.erase(it);
@@ -154,6 +170,18 @@ int main(int argc, char* argv[]) {
                     }
                 }
 
+
+                
+                for (DynamicEntity* bullet : dynamicBullets) {
+                    if (CheckCollisionRecs(player.getHitBox(), bullet->getHitBox())) {
+                        player.health -= bullet->getDamage();
+                        auto it = find(dynamicBullets.begin(), dynamicBullets.end(), bullet);
+                        if (it != dynamicBullets.end() && bullet != nullptr) {
+                            dynamicBullets.erase(it);
+                            delete bullet;
+                        }
+                    }
+                }
                 // Static Entity Collision Logic
 
                     for (StaticEntity staticEntity : staticEntities) {

@@ -7,6 +7,7 @@
 class Player {
     public:
         Vector2 position;
+        int health;
         Player(Vector2 position, int health, float speed, IWeapon& weapon);
         void update();
         Vector2 getPosition();
@@ -21,7 +22,6 @@ class Player {
         Texture2D playerTexture;
         Rectangle playerHitBox;
         bool orientation;
-        int health;
         float speed;
         IWeapon* weapon;
         
