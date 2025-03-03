@@ -1,0 +1,3 @@
+/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles/KeyboardShooter.dir
+/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles/edit_cache.dir
+/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles/rebuild_cache.dir

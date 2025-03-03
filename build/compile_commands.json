@@ -1,0 +1,74 @@
+[
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/main.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/main.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/main.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/button.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/button.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/components.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/components.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/map.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/map.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/client.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/client.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/server.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/server.cpp.o"
+},
+{
+  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
+  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/network.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp",
+  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp",
+  "output": "CMakeFiles/KeyboardShooter.dir/src/network.cpp.o"
+}
+]
