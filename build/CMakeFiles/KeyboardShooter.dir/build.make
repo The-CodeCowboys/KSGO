@@ -86,195 +86,19 @@ CMakeFiles/KeyboardShooter.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/main.cpp.s"
 	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/main.cpp -o CMakeFiles/KeyboardShooter.dir/src/main.cpp.s
 
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp > CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/scenes.cpp -o CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/button.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/button.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/button.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/button.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/button.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp > CMakeFiles/KeyboardShooter.dir/src/button.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/button.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/button.cpp -o CMakeFiles/KeyboardShooter.dir/src/button.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/components.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/components.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/components.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/components.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/components.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp > CMakeFiles/KeyboardShooter.dir/src/components.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/components.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/components.cpp -o CMakeFiles/KeyboardShooter.dir/src/components.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/Player.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp > CMakeFiles/KeyboardShooter.dir/src/Player.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/Player.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Player.cpp -o CMakeFiles/KeyboardShooter.dir/src/Player.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp > CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/Weapon.cpp -o CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp > CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/DynamicEntity.cpp -o CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp > CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/StaticEntity.cpp -o CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/map.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/map.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/map.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/map.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/map.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp > CMakeFiles/KeyboardShooter.dir/src/map.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/map.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/map.cpp -o CMakeFiles/KeyboardShooter.dir/src/map.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/client.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/client.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/client.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/client.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/client.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp > CMakeFiles/KeyboardShooter.dir/src/client.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/client.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/client.cpp -o CMakeFiles/KeyboardShooter.dir/src/client.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/server.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/server.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/server.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/server.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/server.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp > CMakeFiles/KeyboardShooter.dir/src/server.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/server.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/server.cpp -o CMakeFiles/KeyboardShooter.dir/src/server.cpp.s
-
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.o: CMakeFiles/KeyboardShooter.dir/flags.make
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.o: /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.o: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/KeyboardShooter.dir/src/network.cpp.o"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/KeyboardShooter.dir/src/network.cpp.o -MF CMakeFiles/KeyboardShooter.dir/src/network.cpp.o.d -o CMakeFiles/KeyboardShooter.dir/src/network.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp
-
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/KeyboardShooter.dir/src/network.cpp.i"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp > CMakeFiles/KeyboardShooter.dir/src/network.cpp.i
-
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/KeyboardShooter.dir/src/network.cpp.s"
-	/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/network.cpp -o CMakeFiles/KeyboardShooter.dir/src/network.cpp.s
-
 # Object files for target KeyboardShooter
 KeyboardShooter_OBJECTS = \
-"CMakeFiles/KeyboardShooter.dir/src/main.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/button.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/components.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/map.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/client.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/server.cpp.o" \
-"CMakeFiles/KeyboardShooter.dir/src/network.cpp.o"
+"CMakeFiles/KeyboardShooter.dir/src/main.cpp.o"
 
 # External object files for target KeyboardShooter
 KeyboardShooter_EXTERNAL_OBJECTS =
 
 KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/main.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/button.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/components.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/map.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/client.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/server.cpp.o
-KeyboardShooter: CMakeFiles/KeyboardShooter.dir/src/network.cpp.o
 KeyboardShooter: CMakeFiles/KeyboardShooter.dir/build.make
 KeyboardShooter: CMakeFiles/KeyboardShooter.dir/compiler_depend.ts
 KeyboardShooter: /usr/lib/libraylib.so
 KeyboardShooter: CMakeFiles/KeyboardShooter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable KeyboardShooter"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable KeyboardShooter"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/KeyboardShooter.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

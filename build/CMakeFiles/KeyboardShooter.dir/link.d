@@ -3,17 +3,6 @@ KeyboardShooter: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o \
   CMakeFiles/KeyboardShooter.dir/src/main.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/button.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/components.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/map.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/client.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/server.cpp.o \
-  CMakeFiles/KeyboardShooter.dir/src/network.cpp.o \
   /usr/lib/libraylib.so \
   /usr/lib/libraylib.so \
   /usr/lib/libstdc++.so \
@@ -51,28 +40,6 @@ KeyboardShooter: \
 /usr/lib/gcc/x86_64-pc-linux-gnu/14.2.1/crtbeginS.o:
 
 CMakeFiles/KeyboardShooter.dir/src/main.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/scenes.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/button.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/components.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/Player.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/Weapon.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/DynamicEntity.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/StaticEntity.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/map.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/client.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/server.cpp.o:
-
-CMakeFiles/KeyboardShooter.dir/src/network.cpp.o:
 
 /usr/lib/libraylib.so:
 
