@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/build",
-  "command": "/sbin/c++  -I/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/include -I/usr/include -o CMakeFiles/KeyboardShooter.dir/src/main.cpp.o -c /home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/main.cpp",
-  "file": "/home/ilyes/Programming/Keyboard-Strike-Global-Offensive/src/main.cpp",
-  "output": "CMakeFiles/KeyboardShooter.dir/src/main.cpp.o"
-}
-]
